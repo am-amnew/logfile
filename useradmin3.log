@@ -1,0 +1,485 @@
+
+SQL> grant all on database_connection_name.taxi;
+grant all on database_connection_name.taxi
+                                         *
+ERREUR Ó la ligne 1 :
+ORA-00905: mot-clÚ absent
+
+
+SQL> grant all on c##usernormal.taxi;
+grant all on c##usernormal.taxi
+                              *
+ERREUR Ó la ligne 1 :
+ORA-00905: mot-clÚ absent
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> GRANT CREATE SESSION GRANT ANY PRIVILEGE TO c##usernormal;
+GRANT CREATE SESSION GRANT ANY PRIVILEGE TO c##usernormal
+      *
+ERREUR Ó la ligne 1 :
+ORA-00990: privilÞge absent ou non valide
+
+
+SQL> GRANT ANY PRIVILEGE TO c##usernormal;
+GRANT ANY PRIVILEGE TO c##usernormal
+      *
+ERREUR Ó la ligne 1 :
+ORA-00990: privilÞge absent ou non valide
+
+
+SQL> GRANT SELECT TO c##useradmin;
+GRANT SELECT TO c##useradmin
+      *
+ERREUR Ó la ligne 1 :
+ORA-01919: le r¶le 'SELECT' n'existe pas
+
+
+SQL> GRANT SELECT ON user TO c##useradmin;
+GRANT SELECT ON user TO c##useradmin
+                *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> create table user(
+  2  n varchar(20)
+  3  );
+create table user(
+             *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> create table usern(
+  2  n varchar(20)
+  3  );
+
+Table crÚÚe.
+
+SQL> inset into usern values(
+SP2-0734: commande inconnue au dÚbut de "inset into..." - le reste de la ligne est ignorÚ.
+SQL> insert into usern values(
+  2  'mlml'
+  3  );
+
+1 ligne crÚÚe.
+
+SQL> GRANT SELECT ON usern TO c##useradmin;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> commit
+  2  ;
+
+Validation effectuÚe.
+
+SQL> connect c##useradmin;
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from usern
+  2  ;
+select * from usern
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> select * from usern;
+select * from usern
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from usern;
+
+N
+--------------------
+mlml
+
+SQL> GRANT SELECT ON table_name TO user_name;
+GRANT SELECT ON table_name TO user_name
+                *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> GRANT SELECT ON usern TO c##usernormal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> commit;
+
+Validation effectuÚe.
+
+SQL> connect c##useradmin;
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from usern;
+select * from usern
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> GRANT CREATE SESSION, SELECT ANY TABLE TO c##amal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> commit;
+
+Validation effectuÚe.
+
+SQL> connect c##amal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from usern;
+select * from usern
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> ALTER TABLE usern COMPILE;
+ALTER TABLE usern COMPILE
+                  *
+ERREUR Ó la ligne 1 :
+ORA-01735: option ALTER TABLE non valide
+
+
+SQL> ALTER TABLE usern;
+ALTER TABLE usern
+                *
+ERREUR Ó la ligne 1 :
+ORA-02210: aucune option indiquÚe pour ALTER TABLE
+
+
+SQL> grant creat session to c##amal;
+grant creat session to c##amal
+      *
+ERREUR Ó la ligne 1 :
+ORA-00990: privilÞge absent ou non valide
+
+
+SQL> grant create session to c##amal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> commit;
+
+Validation effectuÚe.
+
+SQL> GRANT CREATE SESSION, SELECT ANY TABLE TO c##amal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> connect c##amal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from usern;
+select * from usern
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> grant dba to c##amal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> commit;
+
+Validation effectuÚe.
+
+SQL> connect c##amal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from usern;
+select * from usern
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> CREATE SYNONYM my_synonym FOR sys.usern;
+
+Synonyme crÚÚ.
+
+SQL> GRANT SELECT ON my_synonym TO c##amal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> commit;
+
+Validation effectuÚe.
+
+SQL> connect c##amal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> SELECT * FROM my_synonym;
+SELECT * FROM my_synonym
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> CREATE SYNONYM my_synonym FOR sys as sysdba.usern;
+CREATE SYNONYM my_synonym FOR sys as sysdba.usern
+                                  *
+ERREUR Ó la ligne 1 :
+ORA-00933: la commande SQL ne se termine pas correctement
+
+
+SQL> CREATE SYNONYM my_synonym FOR sysdba.usern;
+CREATE SYNONYM my_synonym FOR sysdba.usern
+               *
+ERREUR Ó la ligne 1 :
+ORA-00955: ce nom d'objet existe dÚjÓ
+
+
+SQL> CREATE SYNONYM my_synony FOR sys as sysdba.usern;
+CREATE SYNONYM my_synony FOR sys as sysdba.usern
+                                 *
+ERREUR Ó la ligne 1 :
+ORA-00933: la commande SQL ne se termine pas correctement
+
+
+SQL> CREATE SYNONYM my_synony FOR sysdba.usern;
+
+Synonyme crÚÚ.
+
+SQL> connect c##amal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> SELECT * FROM my_synony;
+SELECT * FROM my_synony
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> GRANT SELECT ON usern TO c##amal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> commit;
+
+Validation effectuÚe.
+
+SQL> connect c##amal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from usern;
+select * from usern
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect sys as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> grant select on HR.EMPLOYEES to usernormal;
+grant select on HR.EMPLOYEES to usernormal
+                   *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> GRANT SELECT ON HR.EMPLOYEES to c##usernormal;
+GRANT SELECT ON HR.EMPLOYEES to c##usernormal
+                   *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> GRANT SELECT ON HR.employees to c##usernormal;
+GRANT SELECT ON HR.employees to c##usernormal
+                   *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> GRANT SELECT ON HR to c##usernormal;
+GRANT SELECT ON HR to c##usernormal
+                *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> GRANT SELECT ON RH.EMPLOYEES to c##usernormal;
+GRANT SELECT ON RH.EMPLOYEES to c##usernormal
+                   *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> connect c##amal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> GRANT SELECT ON RH.EMPLOYEES to c##usernormal;
+GRANT SELECT ON RH.EMPLOYEES to c##usernormal
+                   *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> select * from users;
+
+USERNAME             PASSWORD
+-------------------- --------------------
+amal                 kal
+lamini               123
+
+SQL> grant select on users to c##usernormal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> connect c##usernormal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from users;
+select * from users
+              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> select * from c##amal.users;
+
+USERNAME             PASSWORD
+-------------------- --------------------
+amal                 kal
+lamini               123
+
+SQL> connect c##useradmin
+Entrez le mot de passe :
+ConnectÚ.
+SQL> create table usernormal(
+  2  username varchar(20),
+  3  password varchar(20)
+  4  );
+
+Table crÚÚe.
+
+SQL> insert into usernormal(
+  2  'amallamini',
+  3  '000'
+  4  );
+'amallamini',
+*
+ERREUR Ó la ligne 2 :
+ORA-00928: mot-clÚ SELECT absent
+
+
+SQL> insert into usernormal(
+  2  'lam',
+  3  '000'
+  4  );
+'lam',
+*
+ERREUR Ó la ligne 2 :
+ORA-00928: mot-clÚ SELECT absent
+
+
+SQL> insert into usernormal values(
+  2  'amallamini',
+  3  '000'
+  4  );
+
+1 ligne crÚÚe.
+
+SQL> grant select on usernormal to c##usernormal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> grant select on bus,taxi,covoiturage,motor to c##usernormal;
+grant select on bus,taxi,covoiturage,motor to c##usernormal
+                   *
+ERREUR Ó la ligne 1 :
+ORA-00990: privilÞge absent ou non valide
+
+
+SQL> grant select on bus to c##usernormal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> grant select on taxi to c##usernormal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> grant select on motor to c##usernormal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> grant select on covoiturage to c##usernormal;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> connect c##usernormal
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from c##useradmin.bus;
+
+    BUS_ID MATRICULE
+---------- --------------------------------------------------
+LIGNE                                               TELEPHONE DATE_DEP DATE_ARR
+-------------------------------------------------- ---------- -------- --------
+      PRIX
+----------
+         1 M00
+euromed-fes                                          61314032 01/01/23 02/01/23
+        10
+
+         2 M001
+euromed-gare                                        613140321 05/01/23 06/01/23
+        20
+
+    BUS_ID MATRICULE
+---------- --------------------------------------------------
+LIGNE                                               TELEPHONE DATE_DEP DATE_ARR
+-------------------------------------------------- ---------- -------- --------
+      PRIX
+----------
+
+         3 M002
+euromed-ouedfes                                     613140320 05/01/23 06/01/23
+        15
+
+
+SQL> select * from c##useradmin.usernormal;
+
+USERNAME             PASSWORD
+-------------------- --------------------
+amallamini           000
+
+SQL> spool off;
+aucune Úcriture en cours vers le fichier spoolSQL>
+SQL>

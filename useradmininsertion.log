@@ -1,0 +1,235 @@
+SQL> insert into bus values(
+  2  1,
+  3   'M00',
+  4  'euromed-fes',
+  5  '061314032',
+  6  TO_DATE('2023-01-01', 'YYYY-MM-DD'),
+  7  TO_DATE('2023-01-02', 'YYYY-MM-DD'),
+  8  '10',
+  9  1
+ 10  );
+insert into bus values(
+            *
+ERREUR à la ligne 1 :
+ORA-00913: trop de valeurs 
+
+
+SQL> insert into bus values(
+  2  1,
+  3   'M00',
+  4  'euromed-fes',
+  5  '061314032',
+  6  TO_DATE('2023-01-01', 'YYYY-MM-DD'),
+  7  TO_DATE('2023-01-02', 'YYYY-MM-DD'),
+  8  '10'
+  9  );
+
+1 ligne créée.
+
+SQL> insert into bus values(
+  2  2,
+  3   'M001',
+  4  'euromed-gare',
+  5  TO_DATE('2023-01-03', 'YYYY-MM-DD'),
+  6  TO_DATE('2023-01-04', 'YYYY-MM-DD'),
+  7  '20'
+  8  );
+insert into bus values(
+            *
+ERREUR à la ligne 1 :
+ORA-00947: nombre de valeurs insuffisant 
+
+
+SQL> insert into bus values(
+  2  2,
+  3   'M001',
+  4  'euromed-gare',
+  5  '0613140321',
+  6  TO_DATE('2023-01-05', 'YYYY-MM-DD'),
+  7  TO_DATE('2023-01-06', 'YYYY-MM-DD'),
+  8  '20'
+  9  );
+
+1 ligne créée.
+
+SQL> insert into bus values(
+  2  3,
+  3   'M002',
+  4  'euromed-ouedfes',
+  5  '0613140320',
+  6  TO_DATE('2023-01-05', 'YYYY-MM-DD'),
+  7  TO_DATE('2023-01-06', 'YYYY-MM-DD'),
+  8  '15'
+  9  );
+
+1 ligne créée.
+
+SQL> insert into taxi values(
+  2  &,
+  3  
+SQL> insert into taxi values(
+  2  1,
+  3  'gare',
+  4  'youssef alaoui'
+  5  '06000000',
+  6  '10',
+  7  TO_DATE('2023-01-05', 'YYYY-MM-DD'),
+  8  '15'
+  9  );
+'06000000',
+*
+ERREUR à la ligne 5 :
+ORA-00917: virgule absente 
+
+
+SQL> insert into taxi values(
+  2  1,
+  3  
+SQL> insert into taxi values(
+  2  1,
+  3  'gare',
+  4  'youssef alaoui',
+  5  '06000000',
+  6  '10',
+  7  TO_DATE('2023-01-05', 'YYYY-MM-DD'),
+  8  '15'
+  9  );
+
+1 ligne créée.
+
+SQL> insert into taxi values(
+  2  2,
+  3  'euromed',
+  4  'youssef bennani',
+  5  '06000000',
+  6  '15',
+  7  TO_DATE('2023-01-06', 'YYYY-MM-DD'),
+  8  '20'
+  9  );
+
+1 ligne créée.
+
+SQL> insert into taxi values(
+  2  3,
+  3  'oued-fes',
+  4  'souad lamini',
+  5  '064547853',
+  6  '13',
+  7  TO_DATE('2023-01-07', 'YYYY-MM-DD'),
+  8  '25'
+  9  );
+
+1 ligne créée.
+
+SQL> insert into motor values(
+  2  1,
+  3  '10',
+  4  '1',
+  5  );
+)
+*
+ERREUR à la ligne 5 :
+ORA-00936: expression absente 
+
+
+SQL> insert into motor values(
+  2  1,
+  3  '10',
+  4  '1'
+  5  );
+
+1 ligne créée.
+
+SQL> insert into motor values(
+  2  2,
+  3  '20',
+  4  '10'
+  5  );
+
+1 ligne créée.
+
+SQL> insert into motor values(
+  2  3,
+  3  '10',
+  4  '20',
+  5  );
+)
+*
+ERREUR à la ligne 5 :
+ORA-00936: expression absente 
+
+
+SQL> insert into motor values(
+  2  3,
+  3  '10',
+  4  '20',
+  5  
+SQL> insert into motor values(
+  2  3,
+  3  '10',
+  4  '20'
+  5  );
+
+1 ligne créée.
+
+SQL> insert into covoiturage values(
+  2  1,
+  3  'gare',
+  4  'achraf alaoui',
+  5  '061314123',
+  6  '50',
+  7   TO_DATE('2023-01-07', 'YYYY-MM-DD'),
+  8  '10'
+  9  );
+
+1 ligne créée.
+
+SQL> insert into covoiturage values(
+  2  2,
+  3  'oued fes',
+  4  'amal lamini',
+  5  '065645782',
+  6  '20',
+  7   TO_DATE('2023-01-08', 'YYYY-MM-DD'),
+  8  '30'
+  9  );
+
+1 ligne créée.
+
+SQL> commit;
+
+Validation effectuée.
+
+SQL> select * from bus;
+
+    BUS_ID MATRICULE                                                            
+---------- --------------------------------------------------                   
+LIGNE                                               TELEPHONE DATE_DEP DATE_ARR 
+-------------------------------------------------- ---------- -------- -------- 
+      PRIX                                                                      
+----------                                                                      
+         1 M00                                                                  
+euromed-fes                                          61314032 01/01/23 02/01/23 
+        10                                                                      
+                                                                                
+         2 M001                                                                 
+euromed-gare                                        613140321 05/01/23 06/01/23 
+        20                                                                      
+
+    BUS_ID MATRICULE                                                            
+---------- --------------------------------------------------                   
+LIGNE                                               TELEPHONE DATE_DEP DATE_ARR 
+-------------------------------------------------- ---------- -------- -------- 
+      PRIX                                                                      
+----------                                                                      
+                                                                                
+         3 M002                                                                 
+euromed-ouedfes                                     613140320 05/01/23 06/01/23 
+        15                                                                      
+                                                                                
+
+SQL> commit;
+
+Validation effectuée.
+
+SQL> spool off

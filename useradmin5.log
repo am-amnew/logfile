@@ -1,0 +1,45 @@
+SQL> insert into bus values(
+  2  1,
+  3  'm0000',
+  4  'euromed_gare',
+  5  TO_DATE('17/12/2015', 'DD/MM/YYYY'),
+  6  TO_DATE('18/12/2015', 'DD/MM/YYYY'),
+  7  10
+  8  );
+insert into bus values(
+            *
+ERREUR à la ligne 1 :
+ORA-00947: nombre de valeurs insuffisant 
+
+
+SQL> insert into bus values(
+  2  1,
+  3  'm0000',
+  4  'euromed_gare',
+  5  TO_DATE('17/12/2015', 'DD/MM/YYYY'),
+  6  TO_DATE('18/12/2015', 'DD/MM/YYYY'),
+  7  10,
+  8  1
+  9  );
+TO_DATE('17/12/2015', 'DD/MM/YYYY'),
+*
+ERREUR à la ligne 5 :
+ORA-00932: types de données incohérents ; attendu : NUMBER ; obtenu : DATE 
+
+
+SQL> insert into bus values(
+  2  1,
+  3  'm0000',
+  4  'euromed_gare',
+  5  '17/12/2015',
+  6  '18/12/2015',
+  7  10,
+  8  1
+  9  );
+10,
+*
+ERREUR à la ligne 7 :
+ORA-00932: types de données incohérents ; attendu : DATE ; obtenu : NUMBER 
+
+
+SQL> spool off
